@@ -200,6 +200,115 @@
           </match>
         </li>
 
+
+        <!-- ===== Stuffable melee weapons =====-->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_CombatKnife"]/costList</xpath>
+          <value>
+            <costStuffCount>140</costStuffCount>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_CombatKnife"]</xpath>
+          <value>
+            <stuffCategories>
+              <li>Metallic</li>
+            </stuffCategories>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_Broadsword"]/costList</xpath>
+          <value>
+            <costStuffCount>270</costStuffCount>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_Broadsword"]</xpath>
+          <value>
+            <stuffCategories>
+              <li>Metallic</li>
+            </stuffCategories>
+          </value>
+        </li>
+
+        <!-- The hammer's plasteel/uranium/spacer components stay fixed ingredients;
+             only its steel frame becomes the stuff. -->
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_GravityHammer"]/costList/Steel</xpath>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_GravityHammer"]</xpath>
+          <value>
+            <costStuffCount>120</costStuffCount>
+            <stuffCategories>
+              <li>Metallic</li>
+            </stuffCategories>
+          </value>
+        </li>
+
+
+        <!-- Warcaskets: Adeptus Astartes adds three more melee weapons -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_PowerSword"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+              <li Class="PatchOperationRemove">
+                <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_PowerSword"]/costList/Steel</xpath>
+              </li>
+              <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_PowerSword"]</xpath>
+                <value>
+                  <costStuffCount>150</costStuffCount>
+                  <stuffCategories>
+                    <li>Metallic</li>
+                  </stuffCategories>
+                </value>
+              </li>
+            </operations>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ChainSword"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+              <li Class="PatchOperationRemove">
+                <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ChainSword"]/costList/Steel</xpath>
+              </li>
+              <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ChainSword"]</xpath>
+                <value>
+                  <costStuffCount>140</costStuffCount>
+                  <stuffCategories>
+                    <li>Metallic</li>
+                  </stuffCategories>
+                </value>
+              </li>
+            </operations>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ThunderHammer"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+              <li Class="PatchOperationRemove">
+                <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ThunderHammer"]/costList/Steel</xpath>
+              </li>
+              <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ThunderHammer"]</xpath>
+                <value>
+                  <costStuffCount>140</costStuffCount>
+                  <stuffCategories>
+                    <li>Metallic</li>
+                  </stuffCategories>
+                </value>
+              </li>
+            </operations>
+          </match>
+        </li>
+
         <!-- Retire the weapon boxes: -->
         <li Class="PatchOperationRemove">
           <xpath>Defs/ThingDef[@Name="VFEP_WarcasketWeaponBoxBase"]/designationCategory</xpath>
