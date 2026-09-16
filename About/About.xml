@@ -17,6 +17,9 @@
     <li>OskarPotocki.VFE.Pirates</li>
     <li>sov.warcasketweapons</li>
     <li>notdvd.eventide</li>
+    <li>Buffsboy474.SMWarcaskets.Ideology.Testing.cz</li>
   </loadAfter>
-  <description>Warcasket weapons now have quality like normal weapons, and are crafted normally at the machining table.</description>
+  <description>Warcasket weapons now have quality like normal weapons, and are crafted normally at the machining table.
+
+Warcasket melee weapons are also made from any metal - plasteel, uranium, silver, gold, bioferrite or a modded one - instead of always steel, with the usual material effects on damage, cooldown, work and hit points.</description>
 </ModMetaData>

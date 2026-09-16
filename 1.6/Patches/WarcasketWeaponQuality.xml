@@ -191,9 +191,9 @@
              those uncraftable. Skips defs handled above (they now have a costList
              or their own recipeMaker), so no duplicate nodes. -->
         <li Class="PatchOperationConditional">
-          <xpath>Defs/ThingDef[(@ParentName="VFEP_BaseWarcasketGun" or @ParentName="VFEP_BaseMeleeWeapon_Warcasket") and not(costList) and not(recipeMaker)]</xpath>
+          <xpath>Defs/ThingDef[(@ParentName="VFEP_BaseWarcasketGun" or @ParentName="VFEP_BaseMeleeWeapon_Warcasket") and not(costList) and not(costStuffCount) and not(recipeMaker)]</xpath>
           <match Class="PatchOperationAdd">
-            <xpath>Defs/ThingDef[(@ParentName="VFEP_BaseWarcasketGun" or @ParentName="VFEP_BaseMeleeWeapon_Warcasket") and not(costList) and not(recipeMaker)]</xpath>
+            <xpath>Defs/ThingDef[(@ParentName="VFEP_BaseWarcasketGun" or @ParentName="VFEP_BaseMeleeWeapon_Warcasket") and not(costList) and not(costStuffCount) and not(recipeMaker)]</xpath>
             <value>
               <recipeMaker Inherit="False" IsNull="True"/>
             </value>
