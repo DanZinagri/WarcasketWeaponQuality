@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Warcasket Weapon Quality</name>
+  <author>DanZinagri</author>
+  <packageId>DanZinagri.WarcasketWeaponQuality</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>OskarPotocki.VFE.Pirates</packageId>
+      <displayName>Vanilla Factions Expanded - Pirates</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2723801948</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>OskarPotocki.VFE.Pirates</li>
+    <li>sov.warcasketweapons</li>
+    <li>notdvd.eventide</li>
+  </loadAfter>
+  <description>Warcasket weapons now have quality like normal weapons, and are crafted normally at the machining table.</description>
+</ModMetaData>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Warcasket weapons become normal machining-table crafts with quality -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- Quality comp on all warcasket weapons. -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[@Name="VFEP_BaseWarcasketGun"]</xpath>
+          <value>
+            <comps>
+              <li>
+                <compClass>CompQuality</compClass>
+              </li>
+            </comps>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[@Name="VFEP_BaseMeleeWeapon_Warcasket"]</xpath>
+          <value>
+            <comps>
+              <li>
+                <compClass>CompQuality</compClass>
+              </li>
+            </comps>
+          </value>
+        </li>
+
+        <!-- Craft at the machining table. Replaces the bases' nulled recipeMaker; -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[@Name="VFEP_BaseWarcasketGun"]/recipeMaker</xpath>
+          <value>
+            <recipeMaker>
+              <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+              <workSkill>Crafting</workSkill>
+              <effectWorking>Smith</effectWorking>
+              <soundWorking>Recipe_Smith</soundWorking>
+              <recipeUsers>
+                <li>TableMachining</li>
+              </recipeUsers>
+              <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+              <researchPrerequisite>VFEP_WarcasketWeaponry</researchPrerequisite>
+            </recipeMaker>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[@Name="VFEP_BaseMeleeWeapon_Warcasket"]/recipeMaker</xpath>
+          <value>
+            <recipeMaker>
+              <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+              <workSkill>Crafting</workSkill>
+              <effectWorking>Smith</effectWorking>
+              <soundWorking>Recipe_Smith</soundWorking>
+              <recipeUsers>
+                <li>TableMachining</li>
+              </recipeUsers>
+              <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+              <researchPrerequisite>VFEP_WarcasketWeaponry</researchPrerequisite>
+            </recipeMaker>
+          </value>
+        </li>
+
+        <!-- VFE Pirates ships extra warcasket weapons in 1.6/Mods/<mod> folders that
+             load only when the matching Vanilla Weapons Expanded mod is active. The
+             warbolter (VWE Bioferrite) keeps its cost on the box only, so give the
+             weapon the box's cost list and its extra research gate. Ordered before
+             the fallback below so it stays craftable. -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="VWEB_Warbolter"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="VWEB_Warbolter"]</xpath>
+            <value>
+              <costList>
+                <Steel>320</Steel>
+                <Plasteel>20</Plasteel>
+                <Bioferrite>20</Bioferrite>
+                <ComponentIndustrial>12</ComponentIndustrial>
+              </costList>
+              <recipeMaker>
+                <researchPrerequisites>
+                  <li>BioferriteIgnition</li>
+                </researchPrerequisites>
+              </recipeMaker>
+            </value>
+          </match>
+        </li>
+
+        <!-- These two boxes were gated behind spacer-tier research; keep that
+             gating on the recipes (child recipeMaker fields override the base's). -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_ChargeLance"]</xpath>
+          <value>
+            <recipeMaker>
+              <researchPrerequisite>VFEP_SpacerWarcasketWeaponry</researchPrerequisite>
+            </recipeMaker>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_ChargeBlaster"]</xpath>
+          <value>
+            <recipeMaker>
+              <researchPrerequisite>VFEP_SpacerWarcasketWeaponry</researchPrerequisite>
+            </recipeMaker>
+          </value>
+        </li>
+
+        <!-- Research gates from the remaining conditional weapons' boxes. -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_Railgun"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_Railgun"]</xpath>
+            <value>
+              <recipeMaker>
+                <researchPrerequisite>VWE_MassDrivers</researchPrerequisite>
+                <researchPrerequisites>
+                  <li>VFEP_SpacerWarcasketWeaponry</li>
+                </researchPrerequisites>
+              </recipeMaker>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_TearGasGrenadeLauncher"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_TearGasGrenadeLauncher"]</xpath>
+            <value>
+              <recipeMaker>
+                <researchPrerequisite>VWE_NonLethal</researchPrerequisite>
+              </recipeMaker>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_FoldingGun"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_FoldingGun"]</xpath>
+            <value>
+              <recipeMaker>
+                <researchPrerequisite>VWE_Quickdraw</researchPrerequisite>
+              </recipeMaker>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_SalvagedLaserEradicator"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_SalvagedLaserEradicator"]</xpath>
+            <value>
+              <recipeMaker>
+                <researchPrerequisite>VWE_LaserWeapons</researchPrerequisite>
+              </recipeMaker>
+            </value>
+          </match>
+        </li>
+
+        <!-- Warcasket weapons that never had a weapon box are exotic trader/reward
+             stock by design (plasma sword; crypto cannon from VFE Vikings; laser
+             blaster from VWE Laser). Keep them uncraftable — they still roll
+             quality when generated. -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_PlasmaSword"]</xpath>
+          <value>
+            <recipeMaker Inherit="False" IsNull="True"/>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_CryptoCannon"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_CryptoCannon"]</xpath>
+            <value>
+              <recipeMaker Inherit="False" IsNull="True"/>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_LaserBlaster"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_LaserBlaster"]</xpath>
+            <value>
+              <recipeMaker Inherit="False" IsNull="True"/>
+            </value>
+          </match>
+        </li>
+
+        <!-- Fallback for any warcasket weapon from a mod not accounted for above:
+             an inherited recipeMaker with no cost list is a config error, so leave
+             those uncraftable. Skips defs handled above (they now have a costList
+             or their own recipeMaker), so no duplicate nodes. -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[(@ParentName="VFEP_BaseWarcasketGun" or @ParentName="VFEP_BaseMeleeWeapon_Warcasket") and not(costList) and not(recipeMaker)]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[(@ParentName="VFEP_BaseWarcasketGun" or @ParentName="VFEP_BaseMeleeWeapon_Warcasket") and not(costList) and not(recipeMaker)]</xpath>
+            <value>
+              <recipeMaker Inherit="False" IsNull="True"/>
+            </value>
+          </match>
+        </li>
+
+        <!-- Retire the weapon boxes: -->
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[@Name="VFEP_WarcasketWeaponBoxBase"]/designationCategory</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[@Name="VFEP_WarcasketWeaponBoxBase"]/designatorDropdown</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[@Name="VFEP_WarcasketWeaponBoxBase"]/thingSetMakerTags</xpath>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- Eventide's sunburn cannon box was gated behind spacer-tier research. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Eventide Warcasket</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="dvd_CollapseWeapon"]</xpath>
+      <value>
+        <recipeMaker>
+          <researchPrerequisite>VFEP_SpacerWarcasketWeaponry</researchPrerequisite>
+        </recipeMaker>
+      </value>
+    </match>
+  </Operation>
+</Patch>
