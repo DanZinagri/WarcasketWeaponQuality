@@ -309,6 +309,36 @@
           </match>
         </li>
 
+        <!-- Unique Melee Weapons adds unique versions of the broadsword and gravity hammer,
+             parented on the VFEP weapons. They inherit the stuff cost above, but declare
+             <comps Inherit="False"> (they must swap CompEquippable for their own ability
+             comp), which drops the CompQuality this mod puts on the base. Give it back,
+             in the same place and with the same art gate as UMW's other uniques: Odyssey's
+             CompUniqueWeapon then rolls them Super quality like every other unique, and
+             only Excellent-plus ones get an inscription. Each op skips a def that already
+             has the node, in case UMW adds it itself later. -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[(defName="UMW_WarcasketBroadsword_Unique" or defName="UMW_WarcasketGravityHammer_Unique") and not(comps/li[compClass="CompQuality"])]/comps/li[@Class="CompProperties_Art"]</xpath>
+          <match Class="PatchOperationInsert">
+            <xpath>Defs/ThingDef[(defName="UMW_WarcasketBroadsword_Unique" or defName="UMW_WarcasketGravityHammer_Unique") and not(comps/li[compClass="CompQuality"])]/comps/li[@Class="CompProperties_Art"]</xpath>
+            <order>Prepend</order>
+            <value>
+              <li>
+                <compClass>CompQuality</compClass>
+              </li>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="UMW_WarcasketBroadsword_Unique" or defName="UMW_WarcasketGravityHammer_Unique"]/comps/li[@Class="CompProperties_Art" and not(minQualityForArtistic)]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="UMW_WarcasketBroadsword_Unique" or defName="UMW_WarcasketGravityHammer_Unique"]/comps/li[@Class="CompProperties_Art" and not(minQualityForArtistic)]</xpath>
+            <value>
+              <minQualityForArtistic>Excellent</minQualityForArtistic>
+            </value>
+          </match>
+        </li>
+
         <!-- Retire the weapon boxes: -->
         <li Class="PatchOperationRemove">
           <xpath>Defs/ThingDef[@Name="VFEP_WarcasketWeaponBoxBase"]/designationCategory</xpath>
