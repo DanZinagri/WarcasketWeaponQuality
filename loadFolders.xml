@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<loadFolders>
+  <v1.6>
+    <li>/</li>
+    <!-- Patches apply last-listed first, so Eventide's runs after 1.6/Patches. -->
+    <li IfModActive="notdvd.eventide">1.6/Mods/Eventide</li>
+    <li>1.6</li>
+  </v1.6>
+  <v1.7>
+    <li>/</li>
+    <!-- Patches apply last-listed first, so Eventide's runs after 1.7/Patches. -->
+    <li IfModActive="notdvd.eventide">1.7/Mods/Eventide</li>
+    <li>1.7</li>
+  </v1.7>
+</loadFolders>

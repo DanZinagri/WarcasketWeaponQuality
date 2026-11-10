@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Eventide's sunburn cannon box was gated behind spacer-tier research. Loaded only with Eventide Warcasket (see loadFolders.xml). -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="dvd_CollapseWeapon"]</xpath>
+    <value>
+      <recipeMaker>
+        <researchPrerequisite>VFEP_SpacerWarcasketWeaponry</researchPrerequisite>
+      </recipeMaker>
+    </value>
+  </Operation>
+</Patch>
